@@ -1,8 +1,8 @@
 const router = require("express").Router();
 //import todo model
-const todoItemsModel = require("../models/toDo.model");
+const todoItemsModel = require("../models/todo.model");
 
-//create first route --add Todo Item to database
+//add Todo Item to database
 router.post("/api/item", async (req, res) => {
     try {
         const newItem = new todoItemsModel({
@@ -16,7 +16,7 @@ router.post("/api/item", async (req, res) => {
     }
 });
 
-//create second route -- get data from database
+//get data from database
 router.get("/api/items", async (req, res) => {
     try {
         const allTodoItems = await todoItemsModel.find({});
@@ -29,7 +29,6 @@ router.get("/api/items", async (req, res) => {
 //update item
 router.put("/api/item/:id", async (req, res) => {
     try {
-        //find the item by its id and update it
         const updateItem = await todoItemsModel.findByIdAndUpdate(req.params.id, {
             $set: req.body,
         });
@@ -39,10 +38,9 @@ router.put("/api/item/:id", async (req, res) => {
     }
 });
 
-//Delete item from database
+//Delete from database
 router.delete("/api/item/:id", async (req, res) => {
     try {
-        //find the item by its id and delete it
         const deleteItem = await todoItemsModel.findByIdAndDelete(req.params.id);
         res.status(200).json("Item Deleted");
     } catch (err) {
@@ -50,5 +48,5 @@ router.delete("/api/item/:id", async (req, res) => {
     }
 });
 
-//export router
-module.exports = router
+
+module.exports = router;
