@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
+
 function App() {
   const [itemText, setItemText] = useState('');
   const [listItems, setListItems] = useState([]);
   const [isUpdating, setIsUpdating] = useState('');
   const [updateItemText, setUpdateItemText] = useState('');
 
-  //add new todo item to database
   const addItem = async (e) => {
     e.preventDefault();
     try {
@@ -20,7 +20,7 @@ function App() {
     }
   }
 
-  //Create function to fetch all todo items from database -- we will use useEffect hook
+
   useEffect(() => {
     const getItemsList = async () => {
       try {
@@ -34,7 +34,6 @@ function App() {
     getItemsList()
   }, []);
 
-  // Delete item when click on delete
   const deleteItem = async (id) => {
     try {
       const res = await axios.delete(`http://localhost:5500/api/item/${id}`)
@@ -44,8 +43,7 @@ function App() {
       console.log(err);
     }
   }
-
-  //Update item
+  
   const updateItem = async (e) => {
     e.preventDefault()
     try {
@@ -55,12 +53,12 @@ function App() {
       const updatedItem = listItems[updatedItemIndex].item = updateItemText;
       setUpdateItemText('');
       setIsUpdating('');
-      console.log(updatedItem);
+      console.log(updatedItem)
     } catch (err) {
       console.log(err);
     }
   }
-  //before updating item we need to show input field where we will create our updated item
+  //input for update item
   const renderUpdateForm = () => (
     <form className="update-form" onSubmit={(e) => { updateItem(e) }} >
       <input className="update-new-input" type="text" placeholder="New Item" onChange={e => { setUpdateItemText(e.target.value) }} value={updateItemText} />
@@ -91,10 +89,8 @@ function App() {
             </div>
           ))
         }
-        
       </div>
     </div>
   );
 }
-
-export default App
+export default App;
