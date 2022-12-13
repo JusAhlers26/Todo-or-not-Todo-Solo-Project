@@ -1,72 +1,103 @@
 const Todo = require('../models/todo.model')
+const mongoose = require('mongoose')
 
-const [itemText, setItemText] = useState('');
-const [listItems, setListItems] = useState([]);
-const [isUpdating, setIsUpdating] = useState('');
-const [updateItemText, setUpdateItemText] = useState('');
+// get all Todo Tasks
+const getAllTodos = async (req, res) => {
+  const user_id = req.user._id
 
-const addItem = async (e) => {
-    e.preventDefault();
-    try {
-        const res = await axios.post('http://localhost:5500/api/item', { item: itemText })
-        setListItems(prev => [...prev, res.data]);
-        setItemText('');
-    } catch (err) {
-        console.log(err);
-    }
+  const todos = await Todo.find({ user_id }).sort({ createdAt: -1 })
+
+  res.json(todos)
+}
+
+// get a single Todo Task
+const getTodo = async (req, res) => {
+  const { id } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.json({ error: 'No such Task' })
+  }
+
+  const todo = await Todo.findById(id)
+
+  if (!todo) {
+    return res.json({ error: 'No such Task' })
+  }
+
+  res.json(todo)
 }
 
 
-useEffect(() => {
-    const getItemsList = async () => {
-        try {
-            const res = await axios.get('http://localhost:5500/api/items')
-            setListItems(res.data);
-            console.log('render')
-        } catch (err) {
-            console.log(err);
-        }
-    }
-    getItemsList()
-}, []);
+// create new Todo Task
+const createTodo = async (req, res) => {
+  const { title, load, reps } = req.body
 
-const deleteItem = async (id) => {
-    try {
-        const res = await axios.delete(`http://localhost:5500/api/item/${id}`)
-        const newListItems = listItems.filter(item => item._id !== id);
-        setListItems(newListItems, res.data);
-    } catch (err) {
-        console.log(err);
-    }
+  let emptyFields = []
+
+  if (!title) {
+    emptyFields.push('title')
+  }
+  if (!load) {
+    emptyFields.push('date')
+  }
+  if (!reps) {
+    emptyFields.push('description')
+  }
+  if (emptyFields.length > 0) {
+    return res.json({ error: 'Please fill in all the fields', emptyFields })
+  }
+
+  // add to db
+  try {
+    const user_id = req.user._id
+    const todo = await Todo.create({ title, date, description, user_id })
+    res.json(todo)
+  } catch (error) {
+    res.json({ error: error.message })
+  }
 }
 
-const updateItem = async (e) => {
-    e.preventDefault()
-    try {
-        const res = await axios.put(`http://localhost:5500/api/item/${isUpdating}`, { item: updateItemText })
-        console.log(res.data)
-        const updatedItemIndex = listItems.findIndex(item => item._id === isUpdating);
-        const updatedItem = listItems[updatedItemIndex].item = updateItemText;
-        setUpdateItemText('');
-        setIsUpdating('');
-        console.log(updatedItem)
-    } catch (err) {
-        console.log(err);
-    }
+// delete a Todo Task
+const deleteTodo = async (req, res) => {
+  const { id } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.json({ error: 'No such todo' })
+  }
+
+  const todo = await Todo.findOneAndDelete({ _id: id })
+
+  if (!todo) {
+    return res.json({ error: 'No such todo' })
+  }
+
+  res.json(todo)
 }
-//input for update item
-const renderUpdateForm = () => (
-    <form className="update-form" onSubmit={(e) => { updateItem(e) }} >
-        <input className="update-new-input" type="text" placeholder="New Item" onChange={e => { setUpdateItemText(e.target.value) }} value={updateItemText} />
-        <button className="update-new-btn" type="submit">Update</button>
-    </form>
-)
 
-module.exports = { 
-    addItem,
-    getItemsList,
-    deleteItem,
-    updateItem,
-    renderUpdateForm,
+// update a Todo Task
+const updateTodo = async (req, res) => {
+  const { id } = req.params
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.json({ error: 'No such Task' })
+  }
+
+  const todo = await Todo.findOneAndUpdate({ _id: id }, {
+    ...req.body
+  })
+
+  if (!todo) {
+    return res.json({ error: 'No such Task' })
+  }
+
+  res.json(todo)
+}
+
+
+module.exports = {
+  getAllTodos,
+  getTodo,
+  createTodo,
+  deleteTodo,
+  updateTodo
 }

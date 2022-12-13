@@ -1,10 +1,24 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
 
-const TodoItemSchema = new mongoose.Schema({
-    item: {
-        type: String,
-        required: true,
-    }
-})
+const Schema = mongoose.Schema
 
-module.exports = mongoose.model("todo", TodoItemSchema)
+const todoSchema = new Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: Number,
+    required: true
+  },
+  date: {
+    type: Number,
+    required: true
+  },
+  user_id: {
+    type: String,
+    required: true
+  }
+}, { timestamps: true })
+
+module.exports = mongoose.model('Todo', todoSchema)
