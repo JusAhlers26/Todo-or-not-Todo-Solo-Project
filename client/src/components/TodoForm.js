@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { useTodosContext } from "../components/hooks/useTodosContext"
-import { useAuthContext } from '../components/hooks/useAuthContext'
+import { useTodosContext } from "../hooks/useTodosContext"
+import { useAuthContext } from '../hooks/useAuthContext'
 
 const TodoForm = () => {
   const { dispatch } = useTodosContext()

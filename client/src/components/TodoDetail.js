@@ -1,5 +1,5 @@
-import { useTodosContext } from '../components/hooks/useTodosContext'
-import { useAuthContext } from '../components/hooks/useAuthContext'
+import { useTodosContext } from '../hooks/useTodosContext'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
