@@ -8,11 +8,11 @@ const todoSchema = new Schema({
     required: true
   },
   description: {
-    type: Number,
+    type: String,
     required: true
   },
   date: {
-    type: Number,
+    type: Date,
     required: true
   },
   user_id: {

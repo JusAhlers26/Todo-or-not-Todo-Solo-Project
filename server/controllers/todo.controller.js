@@ -30,17 +30,17 @@ const getTodo = async (req, res) => {
 
 // create new Todo Task
 const createTodo = async (req, res) => {
-  const { title, load, reps } = req.body
+  const { title, date, description } = req.body
 
   let emptyFields = []
 
   if (!title) {
     emptyFields.push('title')
   }
-  if (!load) {
+  if (!date) {
     emptyFields.push('date')
   }
-  if (!reps) {
+  if (!description) {
     emptyFields.push('description')
   }
   if (emptyFields.length > 0) {

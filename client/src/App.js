@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuthContext } from './components/hooks/useAuthContext'
 
 // pages & components
-import Home from './components/view/Home'
-import Login from './components/view/Login'
-import Signup from './components/view/Signup'
+import Home from './view/Home'
+import Login from './view/Login'
+import Signup from './view/Signup'
 import Navbar from './components/Navbar'
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
-        <div className="pages">
+        <div className="views">
           <Routes>
             <Route
               path="/"

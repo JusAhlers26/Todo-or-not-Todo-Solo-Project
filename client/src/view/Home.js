@@ -3,8 +3,8 @@ import { useTodosContext } from "../hooks/useTodosContext"
 import { useAuthContext } from "../hooks/useAuthContext"
 
 // components
-import TodoDetails from '../TodoDetail'
-import TodoForm from '../TodoForm'
+import TodoDetails from '../components/TodoDetail'
+import TodoForm from '../components/TodoForm'
 
 const Home = () => {
   const { todos, dispatch } = useTodosContext()

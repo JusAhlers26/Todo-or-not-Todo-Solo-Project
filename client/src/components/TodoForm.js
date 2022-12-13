@@ -68,7 +68,7 @@ const TodoForm = () => {
 
       <label>Description:</label>
       <input
-        type="text"
+        type="textarea"
         onChange={(e) => setDescription(e.target.value)}
         value={description}
         className={emptyFields.includes('description') ? 'error' : ''}
