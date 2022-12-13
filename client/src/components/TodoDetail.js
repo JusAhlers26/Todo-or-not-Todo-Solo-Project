@@ -32,7 +32,7 @@ const TodoDetails = ({ todo }) => {
       <p><strong>Date: </strong>{todo.date}</p>
       <p><strong>Description: </strong>{todo.description}</p>
       <p>{formatDistanceToNow(new Date(todo.createdAt), { addSuffix: true })}</p>
-      <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
+      <span className="del-btn" onClick={handleClick}>delete</span>
     </div>
   )
 }
