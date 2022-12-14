@@ -1,4 +1,4 @@
-import { TodosContext } from '../context/TodoContext'
+import { TodosContext } from '../context/TodosContext'
 import { useContext } from 'react'
 
 export const useTodosContext = () => {

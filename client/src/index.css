@@ -10,7 +10,6 @@ body {
   background: #f1f1f1;
   margin: 0;
   font-family: "Poppins";
-  
 }
 header {
   background: #fff;
@@ -27,7 +26,7 @@ header a {
   color: #333;
   text-decoration: none;
 }
-.views{
+.view{
   max-width: 1400px;
   padding: 20px;
   margin: 0 auto;
