@@ -1,10 +1,10 @@
 import { createContext, useReducer } from 'react'
 
-export const TodoContext = createContext()
+export const TodosContext = createContext()
 
-export const TodoReducer = (state, action) => {
+export const TodosReducer = (state, action) => {
   switch (action.type) {
-    case 'SET_TODO':
+    case 'SET_TODOS':
       return {
         todos: action.payload
       }
@@ -18,17 +18,18 @@ export const TodoReducer = (state, action) => {
       }
     default:
       return state
+
   }
 }
 
 export const TodosContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(TodoReducer, {
+  const [state, dispatch] = useReducer(TodosReducer, {
     todos: null
   })
 
   return (
-    <TodoContext.Provider value={{ ...state, dispatch }}>
+    <TodosContext.Provider value={{ ...state, dispatch }}>
       {children}
-    </TodoContext.Provider>
+    </TodosContext.Provider>
   )
 }

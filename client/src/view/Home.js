@@ -3,7 +3,7 @@ import { useTodosContext } from "../hooks/useTodosContext"
 import { useAuthContext } from "../hooks/useAuthContext"
 
 // components
-import TodoDetails from '../components/TodoDetail'
+import TodoDetails from '../components/TodoDetails'
 import TodoForm from '../components/TodoForm'
 
 const Home = () => {

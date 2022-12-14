@@ -11,7 +11,7 @@ export const useLogout = () => {
 
     // dispatch logout action
     dispatch({ type: 'LOGOUT' })
-    dispatchTodos({ type: 'SET_TODO', payload: null })
+    dispatchTodos({ type: 'SET_TODOS', payload: null })
   }
 
   return { logout }

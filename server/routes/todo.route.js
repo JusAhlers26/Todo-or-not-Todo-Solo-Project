@@ -8,17 +8,19 @@ const {
 } = require('../controllers/todo.controller')
 
 const requireAuth = require('../authorization/authorization')
+
 const router = express.Router()
+
 router.use(requireAuth)
 
 // GET all todo tasks
 router.get('/', getAllTodos)
 
-// POST a new todo
-router.post('/', createTodo)
-
 // Get a todo
 router.get('/:id', getTodo)
+
+// POST a new todo
+router.post('/', createTodo)
 
 // DELETE a todo
 router.delete('/:id', deleteTodo)

@@ -27,3 +27,14 @@ app.listen(process.env.PORT, () => {
 app.get('/test', (_req, res) => {
   res.send('Well it works!')
 })
+
+// mongoose.connect(process.env.DB_CONNECT)
+//   .then(() => {
+//     // listen for requests
+//     app.listen(process.env.PORT, () => {
+//       console.log('connected to db & listening on port', process.env.PORT)
+//     })
+//   })
+//   .catch((error) => {
+//     console.log(error)
+//   })

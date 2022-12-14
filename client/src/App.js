@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
-        <div className="views">
+        <div className="view">
           <Routes>
             <Route
               path="/"
@@ -32,7 +32,7 @@ function App() {
         </div>
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
 export default App;
