@@ -22,7 +22,7 @@ const TodoForm = () => {
 
     const todo = { title, date, description }
 
-    const response = await fetch('/api/todos', {
+    const response = await fetch('/api/todos/', {
       method: 'POST',
       body: JSON.stringify(todo),
       headers: {

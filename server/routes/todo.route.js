@@ -7,11 +7,11 @@ const {
   updateTodo
 } = require('../controllers/todo.controller')
 
-const requireAuth = require('../authorization/authorization')
+const authorization = require('../authorization/authorization')
 
 const router = express.Router()
 
-router.use(requireAuth)
+router.use(authorization)
 
 // GET all todo tasks
 router.get('/', getAllTodos)

@@ -3,6 +3,7 @@ import { createContext, useReducer } from 'react'
 export const TodosContext = createContext()
 
 export const TodosReducer = (state, action) => {
+  console.log('this spot here', action.payload)
   switch (action.type) {
     case 'SET_TODO':
       return { todos: action.payload }
