@@ -48,9 +48,9 @@ const TodoForm = () => {
 
   return (
     <form className="create" onSubmit={handleSubmit}>
-      <h3>Add a New Todo</h3>
+      <h3 className="formlabel">Add a New Todo</h3>
 
-      <label>Todo Title:</label>
+      <label className="formlabel">Todo Title:</label>
       <input
         type="text"
         onChange={(e) => setTitle(e.target.value)}
@@ -58,7 +58,7 @@ const TodoForm = () => {
         className={emptyFields.includes('title') ? 'error' : ''}
       />
 
-      <label>Date:</label>
+      <label className="formlabel">Date:</label>
       <input
         type="date"
         onChange={(e) => setDate(e.target.value)}
@@ -66,7 +66,7 @@ const TodoForm = () => {
         className={emptyFields.includes('date') ? 'error' : ''}
       />
 
-      <label>Description:</label>
+      <label className="formlabel">Description:</label>
       <input
         type="text"
         onChange={(e) => setDescription(e.target.value)}

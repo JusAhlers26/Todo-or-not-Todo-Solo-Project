@@ -3,11 +3,11 @@
 
 /* layout */
 :root {
-  --primary: #1aac83;
+  --primary: #389ec3;
   --error: #e7195a;
 }
 body {
-  background: #f1f1f1;
+  background: #333;
   margin: 0;
   font-family: "Poppins";
 }
@@ -64,11 +64,14 @@ header a {
   background: #f1f1f1;
   padding: 6px;
   border-radius: 30%;
-  color: #333;
+  color: #333333;
 }
 
 /* new Todo form */
-label, input {
+.formlabel {
+  color:#f1f1f1;
+}
+label {
   display: block;
 }
 input {
@@ -79,6 +82,7 @@ input {
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+  color:#555;
 }
 form button {
   background: var(--primary);
